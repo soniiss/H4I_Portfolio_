@@ -9,7 +9,7 @@ export default function About() {
       {/* About header and mission statement for Cal Poly Food Pantry */}
       <header className={styles.header}>
         <h1 className={styles.mainHeading}>About The Food Pantry</h1>
-        <p className={styles.mission}>
+        <p>
           The Cal Poly Food Pantry feeds the Mustang community. We believe everyone deserves access to fresh nutritious
           food. The Food Pantry has a robust inventory from a wide variety of packaged and canned foods, fresh produce,
           frozen meals, and personal hygiene items, such as diapers and menstrual products.
