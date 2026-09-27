@@ -8,11 +8,18 @@ export default function DonatePage() {
   const [customAmount, setCustomAmount] = useState<string>("");
   const [confirmationMessage, setConfirmationMessage] = useState<string>("");
 
+  const handlePresetSelect = (amount: number) => {
+    setDonationAmount(amount);
+    setCustomAmount("");
+  };
+
   const handleDonate = () => {
     const amount = donationAmount ?? Number(customAmount);
 
     if (amount > 0) {
       setConfirmationMessage(`Thank you for your donation of $${amount}!`);
+      setCustomAmount("");
+      setDonationAmount(null);
     } else {
       setConfirmationMessage("Please enter a valid donation amount greater than $0.");
     }
@@ -25,32 +32,16 @@ export default function DonatePage() {
       <div className={styles.formGroup}>
         {/* Preset donation amount buttons */}
         <div className={styles.buttonGroup}>
-          <button
-            type="button"
-            className={styles.presetButton}
-            onClick={() => setDonationAmount(5)}
-          >
+          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(5)}>
             $5
           </button>
-          <button
-            type="button"
-            className={styles.presetButton}
-            onClick={() => setDonationAmount(10)}
-          >
+          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(10)}>
             $10
           </button>
-          <button
-            type="button"
-            className={styles.presetButton}
-            onClick={() => setDonationAmount(25)}
-          >
+          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(25)}>
             $25
           </button>
-          <button
-            type="button"
-            className={styles.presetButton}
-            onClick={() => setDonationAmount(50)}
-          >
+          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(50)}>
             $50
           </button>
         </div>
@@ -68,18 +59,12 @@ export default function DonatePage() {
         />
 
         {/* Donate button */}
-        <button
-          type="button"
-          className={styles.donateButton}
-          onClick={handleDonate}
-        >
+        <button type="button" className={styles.donateButton} onClick={handleDonate}>
           Donate Now
         </button>
 
         {/* Confirmation message */}
-        {confirmationMessage && (
-          <p className={styles.message}>{confirmationMessage}</p>
-        )}
+        {confirmationMessage && <p className={styles.message}>{confirmationMessage}</p>}
       </div>
     </div>
   );
