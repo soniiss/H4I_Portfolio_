@@ -1,0 +1,74 @@
+.container {
+  max-width: 480px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333333;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.presetButton {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #02b638;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #0070f3;
+  cursor: pointer;
+}
+
+.presetButton:hover {
+  background-color: #00bd1f;
+  color: #ffffff;
+}
+
+.inputField {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.donateButton {
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  background-color: #01af27;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.donateButton:hover {
+  background-color: #00a251;
+}
+
+.message {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background-color: #e6f4ea;
+  border: 1px solid #b7e1cd;
+  border-radius: 4px;
+  color: #137333;
+  text-align: center;
+}

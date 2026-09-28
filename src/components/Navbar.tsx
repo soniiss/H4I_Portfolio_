@@ -1,3 +1,10 @@
+import Link from "next/link";
+
 export default function Navbar() {
-  return <div>Navbar</div>;
+  return (
+    <nav>
+      <Link href="/">Home</Link>
+      <Link href="/donate">Donate</Link>
+    </nav>
+  );
 }
