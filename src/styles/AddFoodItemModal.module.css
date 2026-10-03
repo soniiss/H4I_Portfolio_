@@ -1,0 +1,123 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.dialog {
+  /* 440px wide, but it shrinks on phones so it doesn't go off the screen */
+  width: min(440px, calc(100vw - 32px));
+  padding: 28px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #111;
+}
+
+/* the inputs and buttons have their own focus styles, so we don't need a ring around the whole modal */
+.dialog:focus {
+  outline: none;
+}
+
+.dialog[open] {
+  animation: popIn 0.2s ease-out;
+}
+
+/* ::backdrop is the dark see-through layer behind the modal, the blur makes the page behind it fuzzy */
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.optional {
+  font-weight: 400;
+  color: #777;
+}
+
+.field input {
+  padding: 10px 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit; /* inputs don't use the page font by default so we tell them to */
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #2f6f4f;
+  box-shadow: 0 0 0 3px rgba(47, 111, 79, 0.2);
+}
+
+.error {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background-color: #fdecec;
+  color: #b42318;
+  font-size: 0.9rem;
+}
+
+.success {
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background-color: #e7f4ec;
+  color: #1f5a3c;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
