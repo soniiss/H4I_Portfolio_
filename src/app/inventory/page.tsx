@@ -1,5 +1,5 @@
 import { mockFoodItems } from "@/data/mockFoodItems";
-import styles from "./inventory.module/css";
+import styles from "./inventory.module.css";
 
 export default function InventoryPage() {
   return (
