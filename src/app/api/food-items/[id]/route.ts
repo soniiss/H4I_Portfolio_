@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
-// Delete once DELETE TODO is implemented
-import { mockFoodItems } from "@/data/mockFoodItems";
-import { mock } from "node:test";
 import connectDB from "@/database/db";
-import FoodItem from "@/database/models/FoodItem"; // placeholder path, adjust once issue #26 creates this model
+import FoodItem from "@/database/models/FoodItem";
 
-// Find foodItemIDX and update its fields if found
+// Connect to MongoDB and update food item by id
 export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   // The provided updates destructured
@@ -23,6 +20,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
 
   try {
     await connectDB();
+    console.log("here");
     const toBeUpdated = await FoodItem.findByIdAndUpdate(id, allowedUpdates, {
       new: true, // Returns most up-to-date
       runValidators: true,
@@ -32,7 +30,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     }
     return NextResponse.json(toBeUpdated.toObject(), { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "Item not updated." }, { status: 500 });
+    return NextResponse.json({ error: "Server failed to update item." }, { status: 500 });
   }
 }
 
@@ -51,6 +49,6 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
 
     return new NextResponse(null, { status: 204 });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to delete item." }, { status: 500 });
+    return NextResponse.json({ error: "Server failed to delete item." }, { status: 500 });
   }
 }
