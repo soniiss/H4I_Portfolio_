@@ -1,26 +1,23 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const FoodItemSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const FoodItemSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    category: { type: String, required: true },
+    quantity: { type: Number, required: true, min: 0 },
+    imageUrl: { type: String, default: "" },
   },
-  category: {
-    type: String,
-    required: true,
+  {
+    toJSON: {
+      virtuals: true,
+      transform: (_document, item) => {
+        item.id = item._id.toString();
+        delete item._id;
+        delete item.__v;
+        return item;
+      },
+    },
   },
-  quantity: {
-    type: Number,
-    required: true,
-    min: 0,
-  },
-  imageUrl: {
-    type: String,
-    required: false,
-    default: "",
-  },
-});
+);
 
-const FoodItem = mongoose.models.FoodItem || mongoose.model("FoodItem", FoodItemSchema);
-
-export default FoodItem;
+export default mongoose.models.FoodItem || mongoose.model("FoodItem", FoodItemSchema);
