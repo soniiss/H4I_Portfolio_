@@ -1,8 +1,19 @@
 import { NextResponse } from "next/server";
 import { mockFoodItems } from "@/data/mockFoodItems";
+import connectDB from "@/database/db";
+import FoodItem from "@/database/models/FoodItem";
 
 export async function GET() {
-  return NextResponse.json(mockFoodItems);
+  try {
+    await connectDB();
+    const foodItems = await FoodItem.find();
+
+    return NextResponse.json(foodItems);
+  } catch (error) {
+    console.error("Failed to fetch food items:", error);
+
+    return NextResponse.json({ error: "Failed to fetch food items" }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
