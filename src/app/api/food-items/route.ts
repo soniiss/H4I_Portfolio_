@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server";
-// GET still needs this, we can delete it once GET is switched to MongoDB (#20)
-import { mockFoodItems } from "@/data/mockFoodItems";
 import connectDB from "@/database/db";
-// this will show an error until the FoodItem model from #26 gets merged
-// I called it FoodItemModel so it doesn't get mixed up with our FoodItem type
-import FoodItemModel from "@/database/models/FoodItem";
+import FoodItem from "@/database/models/FoodItem";
 
 export async function GET() {
-  return NextResponse.json(mockFoodItems);
+  try {
+    await connectDB();
+    const foodItems = await FoodItem.find();
+
+    return NextResponse.json(foodItems);
+  } catch (error) {
+    console.error("Failed to fetch food items:", error);
+
+    return NextResponse.json({ error: "Failed to fetch food items" }, { status: 500 });
+  }
 }
 
 // checks the request and saves the new food item to MongoDB
@@ -18,19 +23,18 @@ export async function POST(request: Request) {
   }
 
   try {
-    // connectDB in db.ts is still a placeholder, so nothing actually saves until that's fixed
     await connectDB();
     // we don't make our own ID anymore, MongoDB gives each item an _id
-    const created = await FoodItemModel.create({
+    const created = await FoodItem.create({
       name: body.name,
       category: body.category,
       quantity: body.quantity,
       imageUrl: body.imageUrl ?? "",
     });
-    const item = created.toObject();
-    // the frontend still looks for id like the mock data had, so we copy _id over to id
-    return NextResponse.json({ ...item, id: item._id.toString() }, { status: 201 });
+    return NextResponse.json(created, { status: 201 });
   } catch (error) {
+    console.error("Failed to create food item:", error);
+
     return NextResponse.json({ error: "Failed to create food item" }, { status: 500 });
   }
 }
