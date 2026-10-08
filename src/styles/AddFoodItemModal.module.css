@@ -1,9 +1,15 @@
+/* fixed keeps the + button in the bottom right corner of the screen even when you scroll */
 .wrapper {
+  position: fixed;
+  right: 24px;
+  /* env(...) keeps it above the home bar on iPhones */
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 100;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* column-reverse puts the success message above the button instead of below it */
+  flex-direction: column-reverse;
+  align-items: flex-end;
   gap: 12px;
-  margin: 32px 0;
   font-family:
     system-ui,
     -apple-system,

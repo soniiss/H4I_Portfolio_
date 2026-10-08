@@ -2,8 +2,14 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
 import styles from "../styles/AddFoodItemModal.module.css";
+import type { FoodItem } from "@/types/foodItem";
 
-export default function AddFoodItemModal() {
+type AddFoodItemModalProps = {
+  // the page passes this in so it can add the new item to its list without a refresh
+  onItemAdded?: (item: FoodItem) => void;
+};
+
+export default function AddFoodItemModal({ onItemAdded }: AddFoodItemModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const [name, setName] = useState("");
@@ -51,7 +57,7 @@ export default function AddFoodItemModal() {
         // the server sends back { error: "..." } so we show that, and the modal stays open so they can fix it
         setError(data.error || "An error occurred while adding the item.");
       } else {
-        // TODO: add the new item to the inventory list once the inventory page is merged (#18)
+        onItemAdded?.(data);
         setSuccess(`${data.name} was added!`);
         setName("");
         setCategory("");

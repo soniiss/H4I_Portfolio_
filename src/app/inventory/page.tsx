@@ -1,5 +1,6 @@
 import { mockFoodItems } from "@/data/mockFoodItems";
 import styles from "./inventory.module.css";
+import AddFoodItemModal from "@/components/AddFoodItemModal";
 
 export default function InventoryPage() {
   return (
@@ -32,6 +33,9 @@ export default function InventoryPage() {
           </div>
         ))}
       </div>
+
+      {/* once #25 keeps the items in state, pass onItemAdded={(item) => setItems((prev) => [...prev, item])} so new items show up right away */}
+      <AddFoodItemModal />
     </main>
   );
 }
