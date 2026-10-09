@@ -1,6 +1,7 @@
-# name of non-profit
+# Community Pantry
 
-{One sentence description of the project}
+
+Community Pantry is a website that helps the community to provide information on available food pantry items, as well as providing the option for a donation for the food pantry.
 
 ## Table of Contents
 
@@ -24,6 +25,23 @@ The {non-profit name} team consists of {#} Cal Poly students. Over the course of
 - [First Last](https://www.linkedin.com/) - Tech Lead
 - [First Last](https://www.linkedin.com/) - Tech Lead
 - [First Last](https://www.linkedin.com/) - Software Developer
+
+## Features
+View available food pantry items.
+Add available food pantry items.
+Donating to food pantry.
+View pantry information and contact details.
+
+## Tech Stack
+-Next.js
+-React
+-Typescript
+-MongoDB Atlas
+- Mongoose
+- Vercel
+
+## Live Site
+Visit the community pantry :
 
 ## Getting Started And Contributing
 
