@@ -1,15 +1,75 @@
-import { mockFoodItems } from "@/data/mockFoodItems";
-import styles from "./inventory.module/css";
+"use client";
+
+import { useEffect, useState } from "react";
+import styles from "./inventory.module.css";
+
+type FoodItem = {
+  _id?: string;
+  id?: string;
+  name: string;
+  category: string;
+  quantity: number;
+  imageUrl?: string;
+};
 
 export default function InventoryPage() {
-  return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>Pantry Inventory</h1>
-      <p className={styles.subtitle}>See what food items are currently available at our pantry.</p>
+  const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    let ignore = false;
+
+    async function fetchFoodItems() {
+      try {
+        const response = await fetch("/api/food-items", { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const data: FoodItem[] = await response.json();
+
+        if (!ignore) {
+          setFoodItems(data);
+          setError(null);
+        }
+      } catch (err) {
+        console.error("failed to load food items:", err);
+        if (!ignore) {
+          setError("unable load food items. please try again later.");
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchFoodItems();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  let content;
+
+  if (loading) {
+    content = <p className={styles.subtitle}>Loading food items...</p>;
+  } else if (error) {
+    content = (
+      <p className={styles.subtitle} role="alert">
+        {error}
+      </p>
+    );
+  } else if (foodItems.length === 0) {
+    content = <p className={styles.subtitle}>No food items are currently available.</p>;
+  } else {
+    content = (
       <div className={styles.grid}>
-        {mockFoodItems.map((item) => (
-          <div key={item.id} className={styles.card}>
+        {foodItems.map((item) => (
+          <div key={item._id ?? item.id ?? item.name} className={styles.card}>
             {/* image placeholder / wrapper */}
             <div className={styles.imageWrapper}>
               {item.imageUrl ? (
@@ -32,6 +92,15 @@ export default function InventoryPage() {
           </div>
         ))}
       </div>
+    );
+  }
+
+  return (
+    <main className={styles.main}>
+      <h1 className={styles.title}>Pantry Inventory</h1>
+      <p className={styles.subtitle}>See what food items are currently available at our pantry.</p>
+
+      {content}
     </main>
   );
 }
