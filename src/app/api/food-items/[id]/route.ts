@@ -24,7 +24,9 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     }
 
     const fields = ["name", "category", "quantity", "imageUrl"] as const;
-    const changes = Object.fromEntries(fields.filter((field) => field in updates).map((field) => [field, updates[field]]));
+    const changes = Object.fromEntries(
+      fields.filter((field) => field in updates).map((field) => [field, updates[field]]),
+    );
 
     await connectDB();
     const foodItem = await FoodItem.findByIdAndUpdate(id, changes, { new: true, runValidators: true });

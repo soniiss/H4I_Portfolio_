@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { mockFoodItems } from "@/data/mockFoodItems";
 import connectDB from "@/database/db";
 import FoodItem from "@/database/models/FoodItem";
 
@@ -16,21 +15,26 @@ export async function GET() {
   }
 }
 
+// checks the request and saves the new food item to MongoDB
 export async function POST(request: Request) {
   const body = await request.json();
   if (!body.name || !body.category || body.quantity === undefined) {
     return NextResponse.json({ error: "Missing required fields: name, category, quantity" }, { status: 400 });
   }
 
-  const newItem = {
-    id: crypto.randomUUID(),
-    name: body.name,
-    category: body.category,
-    quantity: body.quantity,
-    imageUrl: body.imageUrl ?? "",
-  };
+  try {
+    await connectDB();
+    // we don't make our own ID anymore, MongoDB gives each item an _id
+    const created = await FoodItem.create({
+      name: body.name,
+      category: body.category,
+      quantity: body.quantity,
+      imageUrl: body.imageUrl ?? "",
+    });
+    return NextResponse.json(created, { status: 201 });
+  } catch (error) {
+    console.error("Failed to create food item:", error);
 
-  mockFoodItems.push(newItem);
-
-  return NextResponse.json(newItem, { status: 201 });
+    return NextResponse.json({ error: "Failed to create food item" }, { status: 500 });
+  }
 }
