@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import styles from "./inventory.module.css";
+import AddFoodItemModal from "@/components/AddFoodItemModal";
 
 type FoodItem = {
   _id?: string;

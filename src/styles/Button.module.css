@@ -1,0 +1,75 @@
+.button {
+  border-radius: 8px;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+/* this ring only shows when someone tabs to the button with the keyboard, not when they click */
+.button:focus-visible {
+  outline: 3px solid #9fd3b6;
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.primary {
+  padding: 10px 18px;
+  border: none;
+  background-color: #2f6f4f;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #25593f;
+}
+
+.secondary {
+  padding: 10px 18px;
+  border: 1px solid #d0d0d0;
+  background-color: white;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: #f4f4f4;
+}
+
+.round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: #2f6f4f;
+  color: white;
+  font-size: 2rem;
+  line-height: 1;
+  /* the shadow uses the button's own green so it kind of glows instead of looking gray */
+  box-shadow: 0 4px 12px rgba(47, 111, 79, 0.35);
+}
+
+.round:hover:not(:disabled) {
+  background-color: #25593f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(47, 111, 79, 0.45);
+}
+
+.round:active {
+  transform: translateY(0);
+}
