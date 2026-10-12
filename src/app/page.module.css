@@ -1,32 +1,186 @@
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 4rem 2rem;
-  text-align: center;
+.page {
+  --green: #2f6f4f;
+  --ink: #1a1a1a;
+  background-color: #f7f5ef;
+  color: var(--ink);
 }
 
-.heroImage {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 60vh;
+  padding: 3rem 5%;
+  overflow: hidden;
+}
+
+.heroText {
+  position: relative;
+  z-index: 2;
+  width: 50%;
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+}
+
+.titleGreen {
+  display: block;
+  color: var(--green);
+}
+
+.titleBlack {
+  display: block;
+  color: var(--ink);
+}
+
+.description {
+  max-width: 32rem;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333333;
 }
 
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.button {
+.buttonPrimary,
+.buttonSecondary {
   padding: 0.75rem 1.5rem;
-  background-color: #2f6f4f;
-  color: white;
+  border: 2px solid var(--green);
   border-radius: 8px;
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
 }
 
-.button:hover {
+.buttonPrimary {
+  background-color: var(--green);
+  color: #ffffff;
+}
+
+.buttonSecondary {
+  background-color: #ffffff;
+  color: var(--green);
+}
+
+.buttonPrimary:hover,
+.buttonSecondary:hover {
   opacity: 0.85;
+}
+
+.heroImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 55%;
+  z-index: 1;
+}
+
+/* Fades the left edge of the image into the page background, keep the color matching .page */
+.heroImage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to right, #f7f5ef 0%, transparent 30%);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 5% 3rem;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e8e4da;
+  border-radius: 12px;
+  box-shadow: 0 6px 8px -6px rgba(0, 0, 0, 0.25);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cardTitle {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.cardText {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555555;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding: 2rem 1.5rem;
+  }
+
+  .heroText {
+    width: 100%;
+  }
+
+  .heroImage {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    margin-top: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .heroImage::before {
+    display: none;
+  }
+
+  .cards {
+    gap: 0.75rem;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    text-align: center;
+  }
+
+  .cardTitle {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .cardText {
+    display: none;
+  }
 }
