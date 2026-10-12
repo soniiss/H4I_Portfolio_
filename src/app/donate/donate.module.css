@@ -72,3 +72,9 @@
   color: #137333;
   text-align: center;
 }
+
+/* keeps the picked preset green after you click it, same colors as the hover */
+.selected {
+  background-color: #00bd1f;
+  color: #ffffff;
+}

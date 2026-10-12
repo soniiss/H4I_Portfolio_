@@ -1,11 +1,9 @@
 import React from "react";
 import styles from "./about.module.css";
-import Navbar from "@/components/Navbar";
 
 export default function About() {
   return (
     <div className={styles.container}>
-      <Navbar />
       {/* About header and mission statement for Cal Poly Food Pantry */}
       <header className={styles.header}>
         <h1 className={styles.mainHeading}>About The Food Pantry</h1>

@@ -32,16 +32,36 @@ export default function DonatePage() {
       <div className={styles.formGroup}>
         {/* Preset donation amount buttons */}
         <div className={styles.buttonGroup}>
-          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(5)}>
+          <button
+            type="button"
+            className={`${styles.presetButton} ${donationAmount === 5 ? styles.selected : ""}`}
+            aria-pressed={donationAmount === 5}
+            onClick={() => handlePresetSelect(5)}
+          >
             $5
           </button>
-          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(10)}>
+          <button
+            type="button"
+            className={`${styles.presetButton} ${donationAmount === 10 ? styles.selected : ""}`}
+            aria-pressed={donationAmount === 10}
+            onClick={() => handlePresetSelect(10)}
+          >
             $10
           </button>
-          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(25)}>
+          <button
+            type="button"
+            className={`${styles.presetButton} ${donationAmount === 25 ? styles.selected : ""}`}
+            aria-pressed={donationAmount === 25}
+            onClick={() => handlePresetSelect(25)}
+          >
             $25
           </button>
-          <button type="button" className={styles.presetButton} onClick={() => handlePresetSelect(50)}>
+          <button
+            type="button"
+            className={`${styles.presetButton} ${donationAmount === 50 ? styles.selected : ""}`}
+            aria-pressed={donationAmount === 50}
+            onClick={() => handlePresetSelect(50)}
+          >
             $50
           </button>
         </div>
