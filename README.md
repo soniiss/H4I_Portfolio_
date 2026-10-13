@@ -1,6 +1,5 @@
 # Community Pantry
 
-
 Community Pantry is a website that helps the community to provide information on available food pantry items, as well as providing the option for a donation for the food pantry.
 
 ## Table of Contents
@@ -27,20 +26,24 @@ The {non-profit name} team consists of {#} Cal Poly students. Over the course of
 - [First Last](https://www.linkedin.com/) - Software Developer
 
 ## Features
+
 View available food pantry items.
 Add available food pantry items.
 Donating to food pantry.
 View pantry information and contact details.
 
 ## Tech Stack
+
 -Next.js
 -React
 -Typescript
 -MongoDB Atlas
+
 - Mongoose
 - Vercel
 
 ## Live Site
+
 Visit the community pantry :
 
 ## Getting Started And Contributing
@@ -48,3 +51,12 @@ Visit the community pantry :
 Visit [getting-started.md](docs/getting-started.md) on info for how to set up this repo.
 
 Visit [contributing.md](docs/contributing.md) on info for how to contribute to this repo.
+
+## Testing
+
+This project uses [Vitest](https://vitest.dev/) with React Testing Library.
+
+- `npm run test`: run tests once (all tests, that is)
+- `npm run test:watch`: re-run tests automatically whenever files have a change
+
+Test files end in `.test.ts` or `.test.tsx` and sit next to the file they test (like `src/app/page.test.tsx`). All tests must pass before a pull request is merged.
