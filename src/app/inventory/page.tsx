@@ -76,14 +76,7 @@ export default function InventoryPage() {
             {/* image placeholder / wrapper */}
             <div className={styles.imageWrapper}>
               {item.imageUrl ? (
-                <Image
-                  src={item.imageUrl}
-                  alt={item.name}
-                  width={300}
-                  height={180}
-                  className={styles.image}
-                  unoptimized
-                />
+                <img src={item.imageUrl} alt={item.name} className={styles.image} />
               ) : (
                 <span className={styles.noImage}>Image Placeholder</span>
               )}
@@ -91,10 +84,7 @@ export default function InventoryPage() {
 
             {/* item info */}
             <div className={styles.info}>
-              <div className={styles.categoryRow}>
-                <p className={styles.category}>{item.category}</p>
-                <DeleteButton itemName={item.name} />
-              </div>
+              <p className={styles.category}>{item.category}</p>
               <h2 className={styles.name}>{item.name}</h2>
             </div>
 
