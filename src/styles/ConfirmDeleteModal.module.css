@@ -1,0 +1,108 @@
+.dialog {
+  width: min(400px, calc(100vw - 32px));
+  padding: 28px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #111;
+}
+
+.dialog:focus {
+  outline: none;
+}
+
+.dialog[open] {
+  animation: popIn 0.2s ease-out;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.message {
+  margin: 0;
+  color: #444;
+  line-height: 1.5;
+}
+
+.warning {
+  margin: 6px 0 0;
+  color: #111;
+  font-size: 0.9rem;
+}
+
+.error {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background-color: #fdecec;
+  color: #b42318;
+  font-size: 0.9rem;
+}
+
+/* cancel on the left, delete on the right */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* little message at the bottom of the screen after deleting */
+.toast {
+  animation: toastInOut 3s ease forwards;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background-color: #e7f4ec;
+  color: #1f5a3c;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes toastInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+}
