@@ -1,16 +1,92 @@
 .navbar {
+  position: relative;
+  z-index: 10;
   display: flex;
-  gap: 1.5rem;
-  padding: 1rem 2rem;
-  background-color: #2f6f4f;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+  padding: 0.75rem clamp(1.5rem, 6.7vw, 7.625rem);
+  background-color: #ffffff;
+  box-shadow: 0 4px 14px rgba(24, 45, 33, 0.12);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #075b35;
+  text-decoration: none;
+}
+
+.brandName {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.65rem, 2vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.75rem, 2.5vw, 3rem);
+  margin-right: 2rem;
 }
 
 .link {
-  color: white;
+  position: relative;
+  padding: 0.35rem 0 0.25rem;
+  color: #171717;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
   text-decoration: none;
-  font-weight: 600;
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
 }
 
 .link:hover {
-  text-decoration: underline;
+  color: #075b35;
+}
+
+.link:focus-visible,
+.brand:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #27824f;
+  outline-offset: 4px;
+}
+
+.active {
+  color: #171717;
+  box-shadow: inset 0 -2px 0 #27824f;
+}
+
+@media (max-width: 1080px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: auto;
+    padding: 1rem 1.25rem 0.8rem;
+  }
+
+  .brand {
+    gap: 0.6rem;
+  }
+
+  .brandName {
+    font-size: 1.7rem;
+  }
+
+  .links {
+    justify-content: center;
+    width: 100%;
+    gap: 0.35rem clamp(0.75rem, 4vw, 1.35rem);
+    margin-right: 0;
+    flex-wrap: wrap;
+  }
+
+  .link {
+    padding: 0.35rem 0;
+    font-size: 0.98rem;
+  }
 }
