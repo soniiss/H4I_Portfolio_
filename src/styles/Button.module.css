@@ -47,6 +47,18 @@
   background-color: #f4f4f4;
 }
 
+.danger {
+  padding: 10px 18px;
+  border: none;
+  background-color: #c62828;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.danger:hover:not(:disabled) {
+  background-color: #a11f1f;
+}
+
 .round {
   display: inline-flex;
   align-items: center;
