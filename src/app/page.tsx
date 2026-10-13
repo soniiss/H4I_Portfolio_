@@ -48,21 +48,21 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href="/contact" className={styles.card}>
-          <Image src="/support-our-community.jpg" alt="" width={48} height={48} className={styles.cardIcon} />
+        <Link href="/about" className={styles.card}>
+          <Image src="/donate.jpg" alt="" width={48} height={48} className={styles.cardIcon} />
           <div>
-            <h2 className={styles.cardTitle}>Support Our Community</h2>
-            <p className={styles.cardText}>Together we can make a lasting impact and ensure no one goes hungry.</p>
+            <h2 className={styles.cardTitle}>Who are We</h2>
+            <p className={styles.cardText}>
+              We belive everyone has a right to food. Get to know our mission & what we do.
+            </p>
           </div>
         </Link>
 
         <Link href="/donate" className={styles.card}>
-          <Image src="/donate.jpg" alt="" width={48} height={48} className={styles.cardIcon} />
+          <Image src="/support-our-community.jpg" alt="" width={48} height={48} className={styles.cardIcon} />
           <div>
-            <h2 className={styles.cardTitle}>Donate</h2>
-            <p className={styles.cardText}>
-              Help us keep our shelves stocked with nutritious food and essential items.
-            </p>
+            <h2 className={styles.cardTitle}>Support Our Community</h2>
+            <p className={styles.cardText}>Together we can make a lasting impact and ensure no one goes hungry.</p>
           </div>
         </Link>
       </section>

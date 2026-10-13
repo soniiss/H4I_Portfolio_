@@ -20,7 +20,10 @@ export default function ContactPage() {
         <header className={styles.header}>
           <p className={styles.eyebrow}>Get in touch</p>
           <h1>Contact the Pantry</h1>
-          <p>Questions, ideas, or looking to support us in some way? We’d love to hear from you!</p>
+          <p>
+            Contact us to arrange a food donation pickup / drop-off, or to become a volunteer! Questions, ideas, or
+            looking to support us in some way? We’d love to hear from you.
+          </p>
         </header>
 
         <div className={styles.contactDetails}>

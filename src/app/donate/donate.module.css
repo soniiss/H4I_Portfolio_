@@ -10,8 +10,24 @@
 .title {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   color: #333333;
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.link {
+  color: #137333;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #00a251;
 }
 
 .formGroup {
@@ -29,7 +45,7 @@
   flex: 1;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  border: 1px solid #02b638;
+  border: 1px solid #137333;
   border-radius: 4px;
   background-color: #ffffff;
   color: #0070f3;
@@ -37,7 +53,7 @@
 }
 
 .presetButton:hover {
-  background-color: #00bd1f;
+  background-color: #137333;
   color: #ffffff;
 }
 
@@ -54,7 +70,7 @@
   font-weight: bold;
   border: none;
   border-radius: 4px;
-  background-color: #01af27;
+  background-color: #137333;
   color: #ffffff;
   cursor: pointer;
 }
@@ -75,6 +91,6 @@
 
 /* keeps the picked preset green after you click it, same colors as the hover */
 .selected {
-  background-color: #00bd1f;
+  background-color: #137333;
   color: #ffffff;
 }
