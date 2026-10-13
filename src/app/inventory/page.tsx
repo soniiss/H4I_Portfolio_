@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "./inventory.module.css";
 import AddFoodItemModal from "@/components/AddFoodItemModal";
 
@@ -17,6 +18,44 @@ export default function InventoryPage() {
   const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  {
+    /* delete food item button */
+  }
+
+  async function handleDelete(item: FoodItem) {
+    const id = item._id ?? item.id;
+    if (!id) {
+      setDeleteError(`Cannot delete item "${item.name}" because it does not have a valid ID.`);
+      return;
+    }
+
+    if (!window.confirm(`Are you sure you want to delete "${item.name}"?`)) {
+      return;
+    }
+
+    setDeleteError(null);
+    setDeletingId(id);
+
+    try {
+      const response = await fetch(`/api/food-items/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error(`Delete failed (HTTP ${response.status}).`);
+      }
+
+      setFoodItems((items) => items.filter((current) => (current._id ?? current.id) !== id));
+    } catch (error) {
+      console.error("Failed to delete food item:", error);
+      setDeleteError(error instanceof Error ? error.message : "Could not delete the item.");
+    } finally {
+      setDeletingId(null);
+    }
+  }
 
   useEffect(() => {
     let ignore = false;
@@ -74,7 +113,14 @@ export default function InventoryPage() {
             {/* image placeholder / wrapper */}
             <div className={styles.imageWrapper}>
               {item.imageUrl ? (
-                <img src={item.imageUrl} alt={item.name} className={styles.image} />
+                <Image
+                  src={item.imageUrl}
+                  alt={item.name}
+                  width={300}
+                  height={180}
+                  className={styles.image}
+                  unoptimized
+                />
               ) : (
                 <span className={styles.noImage}>Image Placeholder</span>
               )}
@@ -90,6 +136,17 @@ export default function InventoryPage() {
             <div className={item.quantity === 0 ? styles.outOfStockBadge : styles.inStockBadge}>
               {item.quantity === 0 ? "Out of Stock" : `${item.quantity} in stock`}
             </div>
+
+            <button
+              type="button"
+              className={styles.deleteButton}
+              onClick={() => handleDelete(item)}
+              disabled={deletingId === (item._id ?? item.id)}
+              aria-label={`${deletingId === (item._id ?? item.id) ? "Deleting" : "Delete"} ${item.name}`}
+              title={deletingId === (item._id ?? item.id) ? "Deleting..." : `Delete ${item.name}`}
+            >
+              <Image src="/red-trash-can-icon.webp" alt="" width={20} height={20} />
+            </button>
           </div>
         ))}
       </div>
@@ -102,6 +159,8 @@ export default function InventoryPage() {
       <p className={styles.subtitle}>See what food items are currently available at our pantry.</p>
 
       {content}
+
+      {deleteError && <p role="alert">{deleteError}</p>}
 
       <AddFoodItemModal onItemAdded={(item) => setFoodItems((prev) => [...prev, item])} />
     </main>

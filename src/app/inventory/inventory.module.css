@@ -98,3 +98,33 @@
   font-weight: 600;
   font-size: 0.9rem;
 }
+
+.deleteButton {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background-color: #fef2f2;
+}
+
+.deleteButton:focus-visible {
+  outline: 2px solid #c62828;
+  outline-offset: 2px;
+}
+
+.deleteButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
