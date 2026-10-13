@@ -21,7 +21,7 @@ export default function Navbar() {
     <nav className={styles.navbar} aria-label="Primary navigation">
       <Link href="/" className={styles.brand}>
         <Logo />
-        <span className={styles.brandName}>Community Pantry</span>
+        <span className={styles.brandName}>Cal Poly SLO Food Pantry</span>
       </Link>
 
       {/* Used Array.map to map each page link to label and help reduce repetive code*/}
