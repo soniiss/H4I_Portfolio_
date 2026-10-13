@@ -102,6 +102,8 @@ export default function InventoryPage() {
       <p className={styles.subtitle}>See what food items are currently available at our pantry.</p>
 
       {content}
+
+      <AddFoodItemModal onItemAdded={(item) => setFoodItems((prev) => [...prev, item])} />
     </main>
   );
 }

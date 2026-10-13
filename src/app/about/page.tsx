@@ -1,53 +1,104 @@
 import React from "react";
+import Image from "next/image";
 import styles from "./about.module.css";
-import Navbar from "@/components/Navbar";
+
+/* icon variables */
+const Icons = {
+  Plant: "/icon-plant.png",
+  Handshake: "/icon-handshake.png",
+  Sprout: "/icon-sprout.png",
+};
 
 export default function About() {
   return (
-    <div className={styles.container}>
-      <Navbar />
-      {/* About header and mission statement for Cal Poly Food Pantry */}
-      <header className={styles.header}>
-        <h1 className={styles.mainHeading}>About The Food Pantry</h1>
-        <p>
-          The Cal Poly Food Pantry feeds the Mustang community. We believe everyone deserves access to fresh nutritious
-          food. The Food Pantry has a robust inventory from a wide variety of packaged and canned foods, fresh produce,
-          frozen meals, and personal hygiene items, such as diapers and menstrual products.
-        </p>
-      </header>
-
-      {/* Who the Pantry serves and the services it provides */}
-      <main className={styles.content}>
-        <section className={styles.section}>
-          <h2 className={styles.subHeading}>Who We Serve</h2>
-          <p>
-            The Cal Poly Food Pantry serves the Cal Poly community, primarily currently enrolled students, university
-            staff, and employees who are experiencing food insecurity and/or financial hardship.
+    <main className={styles.container}>
+      <section className={styles.hero} aria-labelledby="about-heading">
+        <div className={styles.heroText}>
+          <h1 id="about-heading" className={styles.mainHeading}>
+            About the Cal Poly Food Pantry
+          </h1>
+          <p className={styles.tagline}>Food for today. Hope for tomorrow.</p>
+          <p className={styles.intro}>
+            The Cal Poly Food Pantry feeds the Mustang community. We believe everyone deserves access to fresh
+            nutritious food. The pantry provides free groceries to students, faculty, and staff in need.
           </p>
-        </section>
+        </div>
 
-        <section className={styles.section}>
-          <h2 className={styles.subHeading}>Services We Provide</h2>
-          <ul>
-            <li>
-              <strong>Drop-in: </strong>Students and staff can drop in and take any amount of food and hygiene goods.
-            </li>
-            <li>
-              <strong>CalFresh Assistance: </strong>Students can meet with the CalFresh Outreach Team at the pantry to
-              see if they qualify for benefits and have questions answered.
-            </li>
-            <li>
-              <strong>Emergency Meal Vouchers: </strong>Eligible individuals can receive vouchers valued up to $20 per
-              week to buy prepared food at campus locations (like Vista Grande or the Campus Market).
-            </li>
-            <li>
-              <strong>Monthly SLO Food Bank Food distributions: </strong>
-              Thanks to the partnership with SLO Food Bank, San Luis Obispo community members can receive fresh
-              groceries at Cal Poly during the monthly SLO Food Bank food distributions.
-            </li>
-          </ul>
-        </section>
-      </main>
-    </div>
+        <div className={styles.heroImageWrapper}>
+          <Image
+            src="/food-pantry-2.png"
+            alt="Food pantry volunteers"
+            width={1200}
+            height={800}
+            priority
+            className={styles.heroImage}
+          />
+        </div>
+      </section>
+
+      <section className={styles.cards} aria-label="About the pantry">
+        <article className={styles.card}>
+          <div className={styles.cardHeader}>
+            <div className={styles.iconCircle}>
+              <Image src={Icons.Plant} alt="" aria-hidden="true" width={24} height={24} />
+            </div>
+            <h2 className={styles.cardHeading}>Our Mission</h2>
+          </div>
+          <p className={styles.cardText}>
+            The Cal Poly Food Pantry is dedicated to alleviating food insecurity on campus by providing free groceries
+            to students, faculty, and staff in need.
+          </p>
+        </article>
+
+        <article className={styles.card}>
+          <div className={styles.cardHeader}>
+            <div className={styles.iconCircle}>
+              <Image src={Icons.Handshake} alt="" aria-hidden="true" width={24} height={24} />
+            </div>
+            <h2 className={styles.cardHeading}>How We Help</h2>
+          </div>
+          <p className={styles.cardText}>
+            We distribute free groceries to those in need, ensuring that everyone has access to nutritious food.
+          </p>
+        </article>
+      </section>
+
+      {/* Impact section */}
+      <section className={styles.impact} aria-label="Our impact">
+        <article className={styles.impactItem}>
+          <div className={styles.iconCircleSmall}>
+            <Image src={Icons.Sprout} alt="" aria-hidden="true" width={20} height={20} />
+          </div>
+          <div className={styles.impactContent}>
+            <h2 className={styles.impactHeading}>Nutritious Food</h2>
+            <p className={styles.impactText}>We help our community access nourishing food for their everyday needs.</p>
+          </div>
+        </article>
+
+        <article className={styles.impactItem}>
+          <div className={styles.iconCircleSmall}>
+            <Image src={Icons.Handshake} alt="" aria-hidden="true" width={20} height={20} />
+          </div>
+          <div className={styles.impactContent}>
+            <h2 className={styles.impactHeading}>Stronger Community</h2>
+            <p className={styles.impactText}>
+              The school and partners work together to support people in our community.
+            </p>
+          </div>
+        </article>
+
+        <article className={styles.impactItem}>
+          <div className={styles.iconCircleSmall}>
+            <Image src={Icons.Plant} alt="" aria-hidden="true" width={20} height={20} />
+          </div>
+          <div className={styles.impactContent}>
+            <h2 className={styles.impactHeading}>Brighter Tomorrows</h2>
+            <p className={styles.impactText}>
+              Access to food and support can help people move toward a brighter future.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
   );
 }

@@ -11,10 +11,12 @@ const FoodItemSchema = new Schema(
     toJSON: {
       virtuals: true,
       transform: (_document, item) => {
-        item.id = item._id.toString();
-        delete item._id;
-        delete item.__v;
-        return item;
+        const { _id, __v, ...foodItem } = item;
+
+        return {
+          ...foodItem,
+          id: _id.toString(),
+        };
       },
     },
   },
