@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import styles from "./inventory.module.css";
 import AddFoodItemModal from "@/components/AddFoodItemModal";
-import DeleteButton from "@/components/DeleteButton";
 
 type FoodItem = {
   _id?: string;
