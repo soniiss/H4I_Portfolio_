@@ -54,8 +54,9 @@ Visit [contributing.md](docs/contributing.md) on info for how to contribute to t
 
 ## Testing
 
-Run the test in the terminal with:
+This project uses [Vitest](https://vitest.dev/) with React Testing Library.
 
-npm run test
+- `npm run test`: run tests once (all tests, that is)
+- `npm run test:watch`: re-run tests automatically whenever files have a change
 
-Tests use Vitest and React Testing Library.
+Test files end in `.test.ts` or `.test.tsx` and sit next to the file they test (like `src/app/page.test.tsx`). All tests must pass before a pull request is merged.
