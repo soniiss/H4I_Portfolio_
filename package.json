@@ -14,6 +14,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@mongodb-js/saslprep": "1.5.0",
     "mongoose": "^8",
     "next": "^14",
     "react": "^18.3.1",
