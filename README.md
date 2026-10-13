@@ -17,13 +17,14 @@ Community Pantry is a website that helps the community to provide information on
 
 ### Team
 
-The {non-profit name} team consists of {#} Cal Poly students. Over the course of about 9 months, we worked as a team to deploy this web application. The team members are listed below:
+The Cal Poly Pantry team consists of 6 Cal Poly students. Over the course of about 9 months, we worked as a team to deploy this web application. The team members are listed below:
 
-- [First Last](https://www.linkedin.com/) - Project Manager
-- [First Last](https://www.linkedin.com/) - Designer
-- [First Last](https://www.linkedin.com/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Software Developer
+- Suraj (https://www.linkedin.com/) - Tech Lead
+- Tuan (https://www.linkedin.com/) - Software Developer
+- Matthew (https://www.linkedin.com/) - Software Developer
+- Edgar (https://www.linkedin.com/) - Software Developer
+- Tengis (https://www.linkedin.com/) - Software Developer
+- Jason (https://www.linkedin.com/) - Software Developer
 
 ## Features
 
@@ -34,17 +35,16 @@ View pantry information and contact details.
 
 ## Tech Stack
 
--Next.js
--React
--Typescript
--MongoDB Atlas
-
+- Next.js
+- React
+- Typescript
+- MongoDB Atlas
 - Mongoose
 - Vercel
 
 ## Live Site
 
-Visit the community pantry :
+Visit the community pantry : foodpantrycalpoly17.vercel.app
 
 ## Getting Started And Contributing
 
