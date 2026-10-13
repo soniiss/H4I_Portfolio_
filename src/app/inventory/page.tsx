@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import styles from "./inventory.module.css";
 import AddFoodItemModal from "@/components/AddFoodItemModal";
+import DeleteButton from "@/components/DeleteButton";
+import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 
 type FoodItem = {
   _id?: string;
@@ -17,6 +19,8 @@ export default function InventoryPage() {
   const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // the item the user clicked the trash can on, null means the delete modal is closed
+  const [itemToDelete, setItemToDelete] = useState<{ id: string; name: string } | null>(null);
 
   useEffect(() => {
     let ignore = false;
@@ -82,7 +86,10 @@ export default function InventoryPage() {
 
             {/* item info */}
             <div className={styles.info}>
-              <p className={styles.category}>{item.category}</p>
+              <div className={styles.categoryRow}>
+                <p className={styles.category}>{item.category}</p>
+                <DeleteButton itemName={item.name} onClick={() => setItemToDelete({ id: item.id!, name: item.name })} />
+              </div>
               <h2 className={styles.name}>{item.name}</h2>
             </div>
 
@@ -104,6 +111,12 @@ export default function InventoryPage() {
       {content}
 
       <AddFoodItemModal onItemAdded={(item) => setFoodItems((prev) => [...prev, item])} />
+
+      <ConfirmDeleteModal
+        item={itemToDelete}
+        onClose={() => setItemToDelete(null)}
+        onDeleted={(id) => setFoodItems((prev) => prev.filter((i) => i.id !== id))}
+      />
     </main>
   );
 }
