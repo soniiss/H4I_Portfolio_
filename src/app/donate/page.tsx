@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import styles from "./donate.module.css";
 
 export default function DonatePage() {
@@ -28,6 +29,12 @@ export default function DonatePage() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Donate</h1>
+      <p className={styles.subtitle}>
+        If you would like to make a food donation, please see{" "}
+        <Link href="/contact" className={styles.link}>
+          contact page
+        </Link>
+      </p>
 
       <div className={styles.formGroup}>
         {/* Preset donation amount buttons */}
