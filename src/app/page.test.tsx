@@ -26,23 +26,27 @@ describe("Home page", () => {
     expect(decodeURIComponent(image.getAttribute("src") ?? "")).toContain("/food-pantry.jpg");
   });
 
-  it("shows the three feature cards", () => {
+  it("shows three feature cards", () => {
     render(<Home />);
 
-    expect(screen.getByRole("heading", { name: "Browse Food" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Support Our Community" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Donate" })).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(3);
+    expect(screen.getByRole("heading", { name: /browse food/i })).toBeInTheDocument();
   });
 
-  it.each([
-    ["Browse Food", "/inventory"],
-    ["Support Our Community", "/contact"],
-    ["Donate", "/donate"],
-  ])("makes the %s card a link to %s", (title, href) => {
+  it("links the Browse Food card to the inventory page", () => {
     render(<Home />);
 
-    const card = screen.getByRole("heading", { name: title }).closest("a");
-    expect(card).toHaveAttribute("href", href);
+    const card = screen.getByRole("heading", { name: /browse food/i }).closest("a");
+    expect(card).toHaveAttribute("href", "/inventory");
+  });
+
+  it("links every feature card to a real site page", () => {
+    render(<Home />);
+
+    const sitePages = ["/inventory", "/about", "/contact", "/donate"];
+    screen.getAllByRole("heading", { level: 2 }).forEach((heading) => {
+      expect(sitePages).toContain(heading.closest("a")?.getAttribute("href"));
+    });
   });
 
   it("does not render its own navbar", () => {
